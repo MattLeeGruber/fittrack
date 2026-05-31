@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { Profile, PoidsLog, PasLog, RepasLog, Seance } from "@/lib/supabase";
 import { calculBMR, calculCaloriesBrulees, calculEffortRestant } from "@/lib/calculs";
+import { todayLocal } from "@/lib/date";
 import WeightChart from "@/components/WeightChart";
 import StatCard from "@/components/StatCard";
 import Link from "next/link";
@@ -28,7 +29,7 @@ export default function Dashboard() {
   const [seance, setSeance] = useState<Seance | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const today = new Date().toISOString().slice(0, 10);
+  const today = todayLocal();
 
   useEffect(() => {
     async function load() {

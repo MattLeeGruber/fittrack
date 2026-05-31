@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { PasLog, Profile } from "@/lib/supabase";
+import { todayLocal } from "@/lib/date";
 import { calculBMR, calculCaloriesBrulees } from "@/lib/calculs";
 import { Trash2, ChevronLeft } from "lucide-react";
 import Link from "next/link";
@@ -12,7 +13,7 @@ import { fr } from "date-fns/locale";
 export default function PasPage() {
   const [logs, setLogs] = useState<PasLog[]>([]);
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [date, setDate] = useState(todayLocal());
   const [nbPas, setNbPas] = useState("");
   const [typeJournee, setTypeJournee] = useState<"bureau" | "active">("bureau");
   const [saving, setSaving] = useState(false);

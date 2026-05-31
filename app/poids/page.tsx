@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { PoidsLog } from "@/lib/supabase";
+import { todayLocal } from "@/lib/date";
 import WeightChart from "@/components/WeightChart";
 import { Trash2, ChevronLeft } from "lucide-react";
 import Link from "next/link";
@@ -11,7 +12,7 @@ import { fr } from "date-fns/locale";
 
 export default function PoidsPage() {
   const [logs, setLogs] = useState<PoidsLog[]>([]);
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [date, setDate] = useState(todayLocal());
   const [poids, setPoids] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);

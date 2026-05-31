@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { Aliment, RepasLog, Profile } from "@/lib/supabase";
+import { todayLocal } from "@/lib/date";
 import { calculBMR, calculCaloriesBrulees } from "@/lib/calculs";
 import { Trash2, ChevronLeft, Plus } from "lucide-react";
 import Link from "next/link";
@@ -11,7 +12,7 @@ type Tab = "log" | "bibliotheque";
 
 export default function BoufffePage() {
   const [tab, setTab] = useState<Tab>("log");
-  const today = new Date().toISOString().slice(0, 10);
+  const today = todayLocal();
 
   const [aliments, setAliments] = useState<Aliment[]>([]);
   const [repasLogs, setRepasLogs] = useState<RepasLog[]>([]);

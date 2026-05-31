@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { Exercice, Seance, SerieLog } from "@/lib/supabase";
+import { todayLocal } from "@/lib/date";
 import { Trash2, ChevronLeft, Plus, ChevronDown, ChevronUp, Dumbbell } from "lucide-react";
 import Link from "next/link";
 import { format, parseISO } from "date-fns";
@@ -14,7 +15,7 @@ type SeanceWithSeries = Seance & { series: SerieLog[] };
 
 export default function SallePage() {
   const [tab, setTab] = useState<Tab>("seances");
-  const today = new Date().toISOString().slice(0, 10);
+  const today = todayLocal();
 
   const [exercices, setExercices] = useState<Exercice[]>([]);
   const [seances, setSeances] = useState<SeanceWithSeries[]>([]);
